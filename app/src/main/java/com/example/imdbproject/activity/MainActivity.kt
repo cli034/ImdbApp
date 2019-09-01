@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     val mainPresenterInterface = object: MainPresenter.MainPresenterInterface {
         override fun onResume() {
-            Log.d("testing_presenter", "hello there")
+
         }
 
     }
