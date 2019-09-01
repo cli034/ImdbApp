@@ -6,4 +6,6 @@
 
     <color name="main_blue">#4d4dff</color>
     <color name="colorWhite">#FFF</color>
+    <color name="colorBlack">#000</color>
+    <color name="lightGrey">#D3D3D3</color>
 </resources>
