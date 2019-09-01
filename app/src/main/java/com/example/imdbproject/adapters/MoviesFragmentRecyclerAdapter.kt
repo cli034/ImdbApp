@@ -25,7 +25,12 @@ class MoviesFragmentRecyclerAdapter():
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
+        if (holder is MoviesViewHolder) {
+            holder.moviesTitleTextView.text = moviesRetrofitModelList[position].title
+            holder.moviesRatingTextView.text = moviesRetrofitModelList[position].rated
+            holder.moviesRuntimeTextView.text = moviesRetrofitModelList[position].runtime
+            holder.moviesGenreTextView.text = moviesRetrofitModelList[position].genres?.firstOrNull()
+        }
     }
 
     inner class MoviesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

@@ -47,6 +47,14 @@ class MoviesFragment : Fragment() {
     }
 
     val moviesFragmentPresenterInterface = object: MoviesFragmentPresenter.MoviesFragmentPresenterInterface {
+        override fun notifyViewToShowProgressBar() {
+            fragmentMoviesProgressBar?.visibility = View.VISIBLE
+        }
+
+        override fun notifyViewToHideProgressBar() {
+            fragmentMoviesProgressBar?.visibility = View.GONE
+        }
+
         override fun notifyViewOfUpdateAdapterDataSet(moviesRetrofitModelList: List<MoviesRetrofitModel>) {
             moviesRecyclerAdapter.moviesRetrofitModelList = moviesRetrofitModelList
             moviesRecyclerAdapter.notifyDataSetChanged()
