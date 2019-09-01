@@ -11,15 +11,19 @@ class MoviesFragmentPresenter(private val moviesFragmentPresenterInterface: Movi
         fun notifyViewOfUpdateAdapterDataSet(moviesRetrofitModelList: List<MoviesRetrofitModel>)
         fun notifyViewToHideProgressBar()
         fun notifyViewToShowProgressBar()
+        fun notifyViewToHideRecyclerView()
+        fun notifyViewToShowRecyclerView()
     }
 
     fun notifyPresenterOfOnResume() {
         moviesFragmentPresenterInterface.notifyViewToShowProgressBar()
+        moviesFragmentPresenterInterface.notifyViewToHideRecyclerView()
         moviesNetworkSource.getMoviesList(object: MoviesNetworkSource.MoviesNetworkSourceInterface {
             override fun onSuccess(inTheatersRetrofitModel: InTheatersRetrofitModel) {
                 var moviesRetrofitModelList = inTheatersRetrofitModel.inTheaters?.getOrNull(1)?.movies
                 if (moviesRetrofitModelList != null) {
                     moviesFragmentPresenterInterface.notifyViewOfUpdateAdapterDataSet(moviesRetrofitModelList)
+                    moviesFragmentPresenterInterface.notifyViewToShowRecyclerView()
                     moviesFragmentPresenterInterface.notifyViewToHideProgressBar()
                 }
             }

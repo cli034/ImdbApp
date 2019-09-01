@@ -47,6 +47,14 @@ class MoviesFragment : Fragment() {
     }
 
     val moviesFragmentPresenterInterface = object: MoviesFragmentPresenter.MoviesFragmentPresenterInterface {
+        override fun notifyViewToHideRecyclerView() {
+            fragmentMoviesRecyclerView?.visibility = View.INVISIBLE
+        }
+
+        override fun notifyViewToShowRecyclerView() {
+            fragmentMoviesRecyclerView?.visibility = View.VISIBLE
+        }
+
         override fun notifyViewToShowProgressBar() {
             fragmentMoviesProgressBar?.visibility = View.VISIBLE
         }

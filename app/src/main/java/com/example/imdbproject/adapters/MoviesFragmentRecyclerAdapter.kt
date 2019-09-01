@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.imdbproject.R
 import com.example.imdbproject.model.MoviesRetrofitModel
 import kotlinx.android.synthetic.main.item_movies.view.*
@@ -26,6 +27,9 @@ class MoviesFragmentRecyclerAdapter():
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MoviesViewHolder) {
+            Glide.with(holder.itemView.context)
+                .load(moviesRetrofitModelList[position].urlPoster)
+                .into(holder.moviesImageView)
             holder.moviesTitleTextView.text = moviesRetrofitModelList[position].title
             holder.moviesRatingTextView.text = moviesRetrofitModelList[position].rated
             holder.moviesRuntimeTextView.text = moviesRetrofitModelList[position].runtime
