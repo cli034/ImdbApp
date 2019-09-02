@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.MoviesDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/moviesDetailImageView"
+        android:layout_width="140dp"
+        android:layout_height="220dp"
+        tools:src="@drawable/ic_launcher_background"
+        android:scaleType="fitXY"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/moviesDetailRuntimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="2hr 31min"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/moviesDetailImageView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailImageView" />
+
+    <View
+        android:id="@+id/moviesDetailDividerView"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/colorBlack"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/moviesDetailRuntimeTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailRuntimeTextView"
+        app:layout_constraintBottom_toBottomOf="@id/moviesDetailRuntimeTextView"/>
+
+    <TextView
+        android:id="@+id/moviesDetailRatedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="PG-13"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/moviesDetailRuntimeTextView"
+        app:layout_constraintBottom_toBottomOf="@id/moviesDetailRuntimeTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailDividerView"/>
+
+    <TextView
+        android:id="@+id/moviesDetailGenreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Genre:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/moviesDetailRuntimeTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailImageView" />
+
+    <TextView
+        android:id="@+id/moviesDetailGenreDetailTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Action, Adventure, Fantasy, Sci-Fi"
+        android:textSize="20sp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/moviesDetailGenreTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailGenreTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/moviesDetailDirectorTextView"/>
+
+    <TextView
+        android:id="@+id/moviesDetailDirectorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Director:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/moviesDetailGenreDetailTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailImageView" />
+
+    <TextView
+        android:id="@+id/moviesDetailDirectorNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Zack Snyder"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toTopOf="@id/moviesDetailDirectorTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailDirectorTextView"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/moviesDetailLanguageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Language:"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/moviesDetailDirectorTextView"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailImageView" />
+
+    <TextView
+        android:id="@+id/moviesDetailLanguageDetailTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="English"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/moviesDetailLanguageTextView"
+        app:layout_constraintTop_toTopOf="@id/moviesDetailLanguageTextView"
+        app:layout_constraintBottom_toBottomOf="@id/moviesDetailLanguageTextView"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/moviesDetailScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moviesDetailImageView"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/moviesDetailPlotTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="plot"
+            android:textSize="18sp"/>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

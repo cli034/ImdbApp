@@ -18,6 +18,11 @@
         android:id="@+id/moviesDetailFragment"
         android:name="com.example.imdbproject.fragment.MoviesDetailFragment"
         android:label="fragment_movies_detail"
-        tools:layout="@layout/fragment_movies_detail" />
+        tools:layout="@layout/fragment_movies_detail">
+
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

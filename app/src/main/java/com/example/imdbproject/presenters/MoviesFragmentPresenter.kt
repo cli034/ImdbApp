@@ -11,6 +11,8 @@ class MoviesFragmentPresenter(private val moviesFragmentPresenterInterface: Movi
     val localDataSource = LocalDataSource.getInstance()
 
     interface MoviesFragmentPresenterInterface {
+        fun notifyViewToChangeToolbarTitle()
+        fun notifyViewToShowRefreshButton()
         fun notifyViewOfUpdateAdapterDataSet(moviesRetrofitModelList: List<MoviesRetrofitModel>)
         fun notifyViewToHideProgressBar()
         fun notifyViewToShowProgressBar()
@@ -19,6 +21,8 @@ class MoviesFragmentPresenter(private val moviesFragmentPresenterInterface: Movi
     }
 
     fun notifyPresenterOfOnResume() {
+        moviesFragmentPresenterInterface.notifyViewToChangeToolbarTitle()
+        moviesFragmentPresenterInterface.notifyViewToShowRefreshButton()
         moviesFragmentPresenterInterface.notifyViewToShowProgressBar()
         moviesFragmentPresenterInterface.notifyViewToHideRecyclerView()
         val moviesRetrofitModelList = localDataSource.getMoviesList()
@@ -51,6 +55,7 @@ class MoviesFragmentPresenter(private val moviesFragmentPresenterInterface: Movi
     }
 
     fun notifyPresenterOfMainRefreshTextViewOnClick() {
+        localDataSource.saveMoviesList(null)
         moviesFragmentPresenterInterface.notifyViewToShowProgressBar()
         moviesFragmentPresenterInterface.notifyViewToHideRecyclerView()
         processDownloadCurrentlyInTheaterMoviesList()

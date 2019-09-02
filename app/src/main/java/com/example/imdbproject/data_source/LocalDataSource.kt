@@ -17,7 +17,7 @@ class LocalDataSource {
 
     private var currentlyInTheaterMoviesList: List<MoviesRetrofitModel>? = null
 
-    fun saveMoviesList(moviesRetrofitModelList: List<MoviesRetrofitModel>) {
+    fun saveMoviesList(moviesRetrofitModelList: List<MoviesRetrofitModel>?) {
         currentlyInTheaterMoviesList = moviesRetrofitModelList
     }
 

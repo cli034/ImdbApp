@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +34,6 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<Toolbar>(R.id.mainToolbar)?.title = "IMDB"
         moviesFragmentPresenter = MoviesFragmentPresenter(moviesFragmentPresenterInterface)
         initListeners()
         setupRecyclerView()
@@ -61,13 +61,21 @@ class MoviesFragment : Fragment() {
 
     val moviesFragmentAdapterInterface = object: MoviesFragmentRecyclerAdapter.MoviesFragmentAdapterInterface {
         override fun notifyPresenterOfMoviesViewDetailOnClick(position: Int) {
-            Log.d("click_listener", position.toString())
-            findNavController().navigate(R.id.action_moviesFragment_to_moviesDetailFragment)
+            var bundle = bundleOf("position" to position)
+            findNavController().navigate(R.id.action_moviesFragment_to_moviesDetailFragment, bundle)
         }
 
     }
 
     val moviesFragmentPresenterInterface = object: MoviesFragmentPresenter.MoviesFragmentPresenterInterface {
+        override fun notifyViewToChangeToolbarTitle() {
+            activity?.findViewById<Toolbar>(R.id.mainToolbar)?.title = context?.getString(R.string.mainActivityLabel)
+        }
+
+        override fun notifyViewToShowRefreshButton() {
+            activity?.findViewById<TextView>(R.id.mainRefreshTextView)?.visibility = View.VISIBLE
+        }
+
         override fun notifyViewToHideRecyclerView() {
             fragmentMoviesRecyclerView?.visibility = View.INVISIBLE
         }

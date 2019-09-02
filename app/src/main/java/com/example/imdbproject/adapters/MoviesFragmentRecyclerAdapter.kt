@@ -35,7 +35,7 @@ class MoviesFragmentRecyclerAdapter(private val moviesFragmentAdapterInterface: 
                 .load(moviesRetrofitModelList[position].urlPoster)
                 .into(holder.moviesImageView)
             holder.moviesTitleTextView.text = moviesRetrofitModelList[position].title
-            holder.moviesRatingTextView.text = moviesRetrofitModelList[position].rated
+            holder.moviesRatedTextView.text = moviesRetrofitModelList[position].rated
             holder.moviesRuntimeTextView.text = moviesRetrofitModelList[position].runtime
             holder.moviesGenreTextView.text = moviesRetrofitModelList[position].genres?.firstOrNull()
         }
@@ -44,7 +44,7 @@ class MoviesFragmentRecyclerAdapter(private val moviesFragmentAdapterInterface: 
     inner class MoviesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val moviesImageView: ImageView = itemView.itemMoviesImageView
         val moviesTitleTextView: TextView = itemView.itemMoviesTitleTextView
-        val moviesRatingTextView: TextView = itemView.itemMoviesRatingTextView
+        val moviesRatedTextView: TextView = itemView.itemMoviesRatedTextView
         val moviesRuntimeTextView: TextView = itemView.itemMoviesRuntimeTextView
         val moviesGenreTextView: TextView = itemView.itemMoviesGenreTextView
         val moviesViewDetailsTextView: TextView = itemView.itemMoviesViewDetailsTextView
