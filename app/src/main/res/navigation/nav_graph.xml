@@ -11,11 +11,11 @@
         android:label="fragment_movies"
         tools:layout="@layout/fragment_movies" >
         <action
-            android:id="@+id/action_moviesFragment_to_moviesDetailFragment2"
-            app:destination="@id/moviesDetailFragment2" />
+            android:id="@+id/action_moviesFragment_to_moviesDetailFragment"
+            app:destination="@id/moviesDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/moviesDetailFragment2"
+        android:id="@+id/moviesDetailFragment"
         android:name="com.example.imdbproject.fragment.MoviesDetailFragment"
         android:label="fragment_movies_detail"
         tools:layout="@layout/fragment_movies_detail" />

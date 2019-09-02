@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -29,14 +31,9 @@ class MoviesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        moviesFragmentPresenter = MoviesFragmentPresenter(moviesFragmentPresenterInterface)
-//        setupRecyclerView()
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<Toolbar>(R.id.mainToolbar)?.title = "IMDB"
         moviesFragmentPresenter = MoviesFragmentPresenter(moviesFragmentPresenterInterface)
         initListeners()
         setupRecyclerView()
@@ -65,6 +62,7 @@ class MoviesFragment : Fragment() {
     val moviesFragmentAdapterInterface = object: MoviesFragmentRecyclerAdapter.MoviesFragmentAdapterInterface {
         override fun notifyPresenterOfMoviesViewDetailOnClick(position: Int) {
             Log.d("click_listener", position.toString())
+            findNavController().navigate(R.id.action_moviesFragment_to_moviesDetailFragment)
         }
 
     }
