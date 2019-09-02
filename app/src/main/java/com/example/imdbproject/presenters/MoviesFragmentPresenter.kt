@@ -1,5 +1,6 @@
 package com.example.imdbproject.presenters
 
+import com.example.imdbproject.AppConstant
 import com.example.imdbproject.data_source.LocalDataSource
 import com.example.imdbproject.model.InTheatersRetrofitModel
 import com.example.imdbproject.model.MoviesRetrofitModel
@@ -33,7 +34,7 @@ class MoviesFragmentPresenter(private val moviesFragmentPresenterInterface: Movi
     fun processDownloadCurrentlyInTheaterMoviesList() {
         moviesNetworkSource.getMoviesList(object: MoviesNetworkSource.MoviesNetworkSourceInterface {
             override fun onSuccess(inTheatersRetrofitModel: InTheatersRetrofitModel) {
-                var moviesRetrofitModelList = inTheatersRetrofitModel.inTheaters?.getOrNull(1)?.movies
+                var moviesRetrofitModelList = inTheatersRetrofitModel.inTheaters?.getOrNull(AppConstant.IN_THEATHER_MOVIES_INDEX)?.movies
                 if (moviesRetrofitModelList != null) {
                     localDataSource.saveMoviesList(moviesRetrofitModelList)
                     moviesFragmentPresenterInterface.notifyViewOfUpdateAdapterDataSet(moviesRetrofitModelList)
@@ -47,6 +48,12 @@ class MoviesFragmentPresenter(private val moviesFragmentPresenterInterface: Movi
             }
 
         })
+    }
+
+    fun notifyPresenterOfMainRefreshTextViewOnClick() {
+        moviesFragmentPresenterInterface.notifyViewToShowProgressBar()
+        moviesFragmentPresenterInterface.notifyViewToHideRecyclerView()
+        processDownloadCurrentlyInTheaterMoviesList()
     }
 
 }

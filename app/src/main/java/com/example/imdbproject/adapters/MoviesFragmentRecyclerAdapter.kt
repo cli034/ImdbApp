@@ -11,8 +11,12 @@ import com.example.imdbproject.R
 import com.example.imdbproject.model.MoviesRetrofitModel
 import kotlinx.android.synthetic.main.item_movies.view.*
 
-class MoviesFragmentRecyclerAdapter():
+class MoviesFragmentRecyclerAdapter(private val moviesFragmentAdapterInterface: MoviesFragmentAdapterInterface):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    interface MoviesFragmentAdapterInterface {
+        fun notifyPresenterOfMoviesViewDetailOnClick(position: Int)
+    }
 
     var moviesRetrofitModelList: List<MoviesRetrofitModel> = listOf()
 
@@ -47,7 +51,7 @@ class MoviesFragmentRecyclerAdapter():
 
         init {
             moviesViewDetailsTextView.setOnClickListener {
-
+                moviesFragmentAdapterInterface.notifyPresenterOfMoviesViewDetailOnClick(adapterPosition)
             }
         }
     }

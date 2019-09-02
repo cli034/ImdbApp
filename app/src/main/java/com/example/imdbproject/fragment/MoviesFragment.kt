@@ -2,10 +2,12 @@ package com.example.imdbproject.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,14 +29,28 @@ class MoviesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        moviesFragmentPresenter = MoviesFragmentPresenter(moviesFragmentPresenterInterface)
+//        setupRecyclerView()
+//    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         moviesFragmentPresenter = MoviesFragmentPresenter(moviesFragmentPresenterInterface)
+        initListeners()
         setupRecyclerView()
     }
 
+    private fun initListeners() {
+        val mainRefreshTextView = activity?.findViewById<TextView>(R.id.mainRefreshTextView)
+        mainRefreshTextView?.setOnClickListener {
+            moviesFragmentPresenter.notifyPresenterOfMainRefreshTextViewOnClick()
+        }
+    }
+
     private fun setupRecyclerView() {
-        moviesRecyclerAdapter = MoviesFragmentRecyclerAdapter()
+        moviesRecyclerAdapter = MoviesFragmentRecyclerAdapter(moviesFragmentAdapterInterface)
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         fragmentMoviesRecyclerView.adapter = moviesRecyclerAdapter
@@ -44,6 +60,13 @@ class MoviesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         moviesFragmentPresenter.notifyPresenterOfOnResume()
+    }
+
+    val moviesFragmentAdapterInterface = object: MoviesFragmentRecyclerAdapter.MoviesFragmentAdapterInterface {
+        override fun notifyPresenterOfMoviesViewDetailOnClick(position: Int) {
+            Log.d("click_listener", position.toString())
+        }
+
     }
 
     val moviesFragmentPresenterInterface = object: MoviesFragmentPresenter.MoviesFragmentPresenterInterface {

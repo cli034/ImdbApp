@@ -23,7 +23,7 @@
         android:textStyle="bold"
         android:textSize="24sp"
         android:layout_marginStart="20dp"
-        android:maxLines="1"
+        android:singleLine="true"
         android:ellipsize="end"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/itemMoviesImageView"
@@ -105,7 +105,7 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/itemMoviesImageView"
         app:layout_constraintTop_toBottomOf="@id/itemMoviesDividerView"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/itemMoviesBottomDividerView"/>
 
     <View
         android:id="@+id/itemMoviesBottomDividerView"
